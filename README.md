@@ -2,17 +2,13 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/625f77ab-cd00-40d8-a23f-eb1704ed7ac3
+**URL**: https://porfoliopg.vercel.app/
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/625f77ab-cd00-40d8-a23f-eb1704ed7ac3) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
