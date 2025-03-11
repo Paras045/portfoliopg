@@ -49,17 +49,25 @@ const Contact = () => {
               className="lg:col-span-2"
             >
               <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-8">
-                <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-primary/20">
+                  <img 
+                    src="/lovable-uploads/60f04428-3a13-4400-8c9e-716bddf25da5.png" 
+                    alt="Paras Gunjavate" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                <h3 className="text-2xl font-semibold mb-6 text-center">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <Mail className="h-5 w-5 mt-1 mr-3 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Email</p>
                       <a
-                        href="mailto:contact@example.com"
+                        href="mailto:parasgunjavate522@gmail.com"
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        contact@example.com
+                        parasgunjavate522@gmail.com
                       </a>
                     </div>
                   </div>
@@ -69,10 +77,10 @@ const Contact = () => {
                     <div>
                       <p className="font-medium">Phone</p>
                       <a
-                        href="tel:+1234567890"
+                        href="tel:+919356610087"
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        +1 (234) 567-890
+                        +91 9356610087
                       </a>
                     </div>
                   </div>
@@ -91,7 +99,7 @@ const Contact = () => {
                     <p className="font-medium mb-3">Social Media</p>
                     <div className="flex space-x-4">
                       <a
-                        href="https://github.com"
+                        href="https://github.com/Paras045"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
@@ -100,7 +108,7 @@ const Contact = () => {
                         <Github className="h-5 w-5" />
                       </a>
                       <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/paras-gunjavate-692176219"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Phone } from "lucide-react";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -55,10 +55,23 @@ const ContactSection = () => {
                 <div>
                   <p className="font-medium">Email</p>
                   <a
-                    href="mailto:contact@example.com"
+                    href="mailto:parasgunjavate522@gmail.com"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    contact@example.com
+                    parasgunjavate522@gmail.com
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <Phone className="h-5 w-5 mt-1 mr-3 text-muted-foreground" />
+                <div>
+                  <p className="font-medium">Phone</p>
+                  <a
+                    href="tel:+919356610087"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    +91 9356610087
                   </a>
                 </div>
               </div>
@@ -67,7 +80,7 @@ const ContactSection = () => {
                 <p className="font-medium mb-3">Social Media</p>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com"
+                    href="https://github.com/Paras045"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
@@ -76,7 +89,7 @@ const ContactSection = () => {
                     <Github className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/paras-gunjavate-692176219"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
