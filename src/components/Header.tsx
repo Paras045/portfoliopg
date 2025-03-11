@@ -2,8 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { Menu, User, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navigationItems = [
   { name: "Home", path: "/" },
@@ -60,6 +66,71 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
+          
+          {/* Introduction Section */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                <span className="text-sm font-medium">Introduction</span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-72 p-4">
+              <div className="flex items-center gap-4 mb-3">
+                <img 
+                  src="/lovable-uploads/60f04428-3a13-4400-8c9e-716bddf25da5.png"
+                  alt="Paras Gunjavate" 
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+                <div>
+                  <h4 className="font-medium">Paras Gunjavate</h4>
+                  <p className="text-sm text-muted-foreground">Computer Engineering Student</p>
+                </div>
+              </div>
+              <div className="text-sm text-muted-foreground mb-3">
+                B.Tech student in Computer Engineering with a passion for creating elegant solutions through innovative technology.
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="mailto:parasgunjavate522@gmail.com"
+                    className="flex items-center gap-2"
+                  >
+                    <span>parasgunjavate522@gmail.com</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="tel:9356610087"
+                    className="flex items-center gap-2"
+                  >
+                    <span>9356610087</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="https://github.com/Paras045"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <span>GitHub</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="https://www.linkedin.com/in/paras-gunjavate-692176219"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <span>LinkedIn</span>
+                  </a>
+                </DropdownMenuItem>
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -91,6 +162,56 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile Introduction Section */}
+              <div className="mt-4 pt-4 border-t border-border">
+                <div className="flex items-center gap-4 mb-3">
+                  <img 
+                    src="/lovable-uploads/60f04428-3a13-4400-8c9e-716bddf25da5.png"
+                    alt="Paras Gunjavate" 
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="font-medium">Paras Gunjavate</h4>
+                    <p className="text-xs text-muted-foreground">Computer Engineering Student</p>
+                  </div>
+                </div>
+                <div className="text-sm text-muted-foreground mb-3">
+                  B.Tech student in Computer Engineering passionate about creating innovative solutions.
+                </div>
+                <div className="grid grid-cols-1 gap-2">
+                  <a 
+                    href="mailto:parasgunjavate522@gmail.com"
+                    className="text-sm py-1"
+                  >
+                    parasgunjavate522@gmail.com
+                  </a>
+                  <a 
+                    href="tel:9356610087"
+                    className="text-sm py-1"
+                  >
+                    9356610087
+                  </a>
+                  <div className="flex gap-4 mt-2">
+                    <a 
+                      href="https://github.com/Paras045"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm"
+                    >
+                      GitHub
+                    </a>
+                    <a 
+                      href="https://www.linkedin.com/in/paras-gunjavate-692176219"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
+              </div>
             </nav>
           </div>
         )}
