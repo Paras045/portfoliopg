@@ -53,7 +53,7 @@ const projectsData: ProjectData[] = [
       }
     ],
     technologies: ["React", "TypeScript", "Supabase", "TailwindCSS", "Stripe", "React Query"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://buytrix.lovable.app/",
     githubUrl: "https://github.com"
   },
   {
