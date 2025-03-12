@@ -13,6 +13,7 @@ const projects = [
     description: "A modern e-commerce platform with secure checkout and payment integration.",
     image: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1024",
     tags: ["React", "TypeScript", "Supabase", "TailwindCSS"],
+    liveUrl: "https://e-commerce-demo.vercel.app", // Demo URL for e-commerce project
   },
   {
     id: "farming-ai",
@@ -20,6 +21,7 @@ const projects = [
     description: "AI-powered platform providing insights for improved farming efficiency.",
     image: "https://images.unsplash.com/photo-1562051036-e0eea191d42f?q=80&w=1024",
     tags: ["Python", "TensorFlow", "React", "Node.js"],
+    liveUrl: "https://farming-ai-demo.vercel.app", // Demo URL for farming AI project
   },
 ];
 
@@ -27,8 +29,13 @@ const FeaturedProjects = () => {
   const [previewProject, setPreviewProject] = useState<string | null>(null);
 
   // Function to open the project preview
-  const openPreview = (projectId: string) => {
-    setPreviewProject(projectId);
+  const openPreview = (project: typeof projects[0]) => {
+    // Open in a new tab if it's an external URL
+    if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    setPreviewProject(project.id);
   };
 
   // Function to close the project preview
@@ -92,7 +99,7 @@ const FeaturedProjects = () => {
                   <div className="flex gap-3">
                     <Button 
                       variant="outline" 
-                      onClick={() => openPreview(project.id)}
+                      onClick={() => openPreview(project)}
                       className="inline-flex items-center text-sm font-medium"
                     >
                       View Live <ExternalLink className="ml-1 h-4 w-4" />
@@ -110,7 +117,7 @@ const FeaturedProjects = () => {
           ))}
         </div>
 
-        {/* Live Project Preview Modal */}
+        {/* Live Project Preview Modal - Only shown for internal previews */}
         {previewProject && (
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-card border border-border rounded-lg shadow-lg w-full max-w-5xl h-[80vh] flex flex-col overflow-hidden">
@@ -124,7 +131,7 @@ const FeaturedProjects = () => {
               </div>
               <div className="flex-1 overflow-hidden">
                 <iframe 
-                  src={`/projects/${previewProject}`} 
+                  src={projects.find(p => p.id === previewProject)?.liveUrl} 
                   className="w-full h-full"
                   title={`Live preview of ${projects.find(p => p.id === previewProject)?.title}`}
                 />
