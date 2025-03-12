@@ -13,7 +13,7 @@ const projects = [
     description: "A modern e-commerce platform with secure checkout and payment integration.",
     image: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1024",
     tags: ["React", "TypeScript", "Supabase", "TailwindCSS"],
-    liveUrl: "https://e-commerce-demo.vercel.app", // Demo URL for e-commerce project
+    liveUrl: "https://buytrix.lovable.app/", // Demo URL for e-commerce project
   },
   {
     id: "farming-ai",
