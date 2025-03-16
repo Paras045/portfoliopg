@@ -130,6 +130,14 @@ export default {
 						opacity: '1',
 						transform: 'scale(1)'
 					}
+				},
+				'rotate-360': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg)'
+					}
 				}
 			},
 			animation: {
@@ -138,7 +146,8 @@ export default {
 				'fade-in': 'fade-in 0.7s ease-out',
 				'fade-up': 'fade-up 0.7s ease-out',
 				'fade-down': 'fade-down 0.7s ease-out',
-				'reveal': 'reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+				'reveal': 'reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+				'rotate-360': 'rotate-360 1s linear infinite'
 			}
 		}
 	},

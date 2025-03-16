@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Menu, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import IntroductionModal from "./IntroductionModal";
+import ThemeToggle from "./ThemeToggle";
 
 const navigationItems = [
   { name: "Home", path: "/" },
@@ -36,7 +37,7 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 md:px-12",
         scrolled
-          ? "py-4 backdrop-blur-header bg-background/70 border-b border-border"
+          ? "py-4 backdrop-blur-header bg-background/70 dark:bg-background/60 border-b border-border"
           : "py-6 bg-transparent"
       )}
     >
@@ -63,11 +64,14 @@ const Header = () => {
             </Link>
           ))}
           
+          {/* Theme Toggle Button */}
+          <ThemeToggle />
+          
           {/* Introduction Button */}
           <Button 
             variant="ghost" 
             size="sm" 
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-primary/5 hover:bg-primary/10 transition-colors"
             onClick={() => setIntroModalOpen(true)}
           >
             <User className="h-4 w-4" />
@@ -76,19 +80,22 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden"
-          aria-label="Menu"
-        >
-          <Menu className="h-6 w-6" />
-        </Button>
+        <div className="md:hidden flex items-center space-x-2">
+          <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="bg-primary/5 hover:bg-primary/10 transition-colors"
+            aria-label="Menu"
+          >
+            <Menu className="h-6 w-6" />
+          </Button>
+        </div>
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-header border-b border-border p-6 md:hidden animate-fade-down">
+          <div className="absolute top-full left-0 right-0 bg-background/95 dark:bg-background/90 backdrop-blur-header border-b border-border p-6 md:hidden animate-fade-down">
             <nav className="flex flex-col space-y-4">
               {navigationItems.map((item) => (
                 <Link
