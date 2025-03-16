@@ -36,10 +36,11 @@ const ContactSection = () => {
     }
     
     setIsSubmitting(true);
+    console.log("Submitting form data:", formData);
     
     try {
       // Insert the message into our Supabase database
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('contact_messages')
         .insert([
           { 
@@ -49,6 +50,8 @@ const ContactSection = () => {
             message: formData.message
           }
         ]);
+        
+      console.log("Supabase response:", { data, error });
         
       if (error) throw error;
       
