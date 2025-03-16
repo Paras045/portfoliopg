@@ -1,23 +1,81 @@
 
-import React from "react";
+import React, { useState } from "react";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
+    
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all fields before submitting.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Insert the message into our Supabase database
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([
+          { 
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+          }
+        ]);
+        
+      if (error) throw error;
+      
+      // Reset the form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+      
+      // Show success message
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -139,6 +197,8 @@ const Contact = () => {
                       <Input
                         id="name"
                         placeholder="Your name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
                         className="bg-primary/5 border-primary/10"
                       />
@@ -151,6 +211,8 @@ const Contact = () => {
                         id="email"
                         type="email"
                         placeholder="Your email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                         className="bg-primary/5 border-primary/10"
                       />
@@ -163,6 +225,8 @@ const Contact = () => {
                     <Input
                       id="subject"
                       placeholder="Subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       required
                       className="bg-primary/5 border-primary/10"
                     />
@@ -175,15 +239,25 @@ const Contact = () => {
                       id="message"
                       placeholder="Your message"
                       rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
                       required
                       className="bg-primary/5 border-primary/10 resize-none"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full py-6 bg-foreground text-background hover:bg-foreground/90"
+                    className="w-full py-6 bg-foreground text-background hover:bg-foreground/90 transition-colors"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </div>
