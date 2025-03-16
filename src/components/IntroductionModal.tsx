@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { X, Github, Linkedin, Mail, Phone, MapPin, Star, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,8 @@ interface IntroductionModalProps {
 }
 
 const IntroductionModal = ({ isOpen, onClose }: IntroductionModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   // Add keyboard event listener to close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -26,6 +28,17 @@ const IntroductionModal = ({ isOpen, onClose }: IntroductionModalProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      
+      // Set focus to the modal
+      if (modalRef.current) {
+        modalRef.current.focus();
+      }
+      
+      // Scroll to top of the modal
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     } else {
       document.body.style.overflow = "";
     }
@@ -39,7 +52,7 @@ const IntroductionModal = ({ isOpen, onClose }: IntroductionModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto pt-10 pb-10">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -50,6 +63,7 @@ const IntroductionModal = ({ isOpen, onClose }: IntroductionModalProps) => {
           />
           
           <motion.div
+            ref={modalRef}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -59,7 +73,8 @@ const IntroductionModal = ({ isOpen, onClose }: IntroductionModalProps) => {
               stiffness: 300,
               duration: 0.4 
             }}
-            className="relative z-50 w-full max-w-5xl max-h-[90vh] overflow-auto bg-gradient-to-br from-card/90 to-card/50 shadow-lg rounded-2xl border border-border/50"
+            className="relative z-50 w-full max-w-5xl max-h-[90vh] my-6 mx-auto overflow-auto bg-gradient-to-br from-card/90 to-card/50 shadow-lg rounded-2xl border border-border/50"
+            tabIndex={-1}
           >
             <div className="sticky top-0 z-10 flex items-center justify-between p-6 backdrop-blur-sm bg-background/50 border-b border-border/50">
               <div className="flex items-center gap-3">

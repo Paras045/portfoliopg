@@ -32,6 +32,15 @@ const Header = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  const handleOpenIntroModal = () => {
+    // Close mobile menu if open
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+    // Open introduction modal
+    setIntroModalOpen(true);
+  };
+
   return (
     <header
       className={cn(
@@ -72,7 +81,7 @@ const Header = () => {
             variant="ghost" 
             size="sm" 
             className="flex items-center gap-2 bg-primary/5 hover:bg-primary/10 transition-colors"
-            onClick={() => setIntroModalOpen(true)}
+            onClick={handleOpenIntroModal}
           >
             <User className="h-4 w-4" />
             <span className="text-sm font-medium">Introduction</span>
@@ -117,10 +126,7 @@ const Header = () => {
                 variant="outline" 
                 size="sm" 
                 className="flex items-center gap-2 justify-start"
-                onClick={() => {
-                  setIntroModalOpen(true);
-                  setMobileMenuOpen(false);
-                }}
+                onClick={handleOpenIntroModal}
               >
                 <User className="h-4 w-4" />
                 <span className="text-sm font-medium">Introduction</span>
